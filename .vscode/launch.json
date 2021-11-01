@@ -6,12 +6,12 @@
     "configurations": [
         {
             "name": "(lldb) Launch",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
-            "program": "${workspaceFolder}/exp1_sort/mergesort",
+            "program": "${workspaceFolder}/exp2/select",
             "args": [],
             "stopAtEntry": true,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}/exp2",
             "environment": [],
             "externalConsole": false,
             "MIMode": "lldb",

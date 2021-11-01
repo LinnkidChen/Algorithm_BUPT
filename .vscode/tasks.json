@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "g++ -g merge_sort.cpp -o mergesort"
+            "command": "cd exp2 &&g++ -g select.cpp -o select"
         }
     ]
 }
