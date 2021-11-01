@@ -55,6 +55,8 @@ int main() {
 
   for (int i = 0; i < N; i++) {
     f_out << seq[i] << " ";
+    if ((i + 1) % 10 == 0)
+      f_out << endl;
   }
 }
 
@@ -62,9 +64,9 @@ void quick_sort(vector<int> &seq, int begin, int end) {
   if (begin < end) {
     int q = partition(seq, begin, end);
 
-    for (int i = 0; i < seq.size(); i++)
-      cout << seq[i] << " ";
-    cout << endl;
+    // for (int i = 0; i < seq.size(); i++)
+    //   cout << seq[i] << " ";
+    // cout << endl;
 
     quick_sort(seq, begin, q - 1);
     quick_sort(seq, q + 1, end);

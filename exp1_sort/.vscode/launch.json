@@ -8,7 +8,7 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/quicksort",
+            "program": "${workspaceFolder}/mergesort",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "g++ -g quick_sort.cpp -o quicksort"
+            "command": "g++ -g merge_sort.cpp -o mergesort"
         }
     ]
 }
