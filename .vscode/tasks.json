@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "cd exp2 &&g++ -g select.cpp -o select"
+            "command": "cd exp2 && g++ gen_point.cpp -o gen_point&&./gen_point &&g++ -g point.cpp -o point"
         }
     ]
 }
