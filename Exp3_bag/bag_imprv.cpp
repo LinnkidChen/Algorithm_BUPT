@@ -1,43 +1,66 @@
 #include <cstddef>
 #include <fstream>
 #include <iostream>
+#include <list>
 #include <utility>
 #include <vector>
 
-struct item {
+class node {
+public:
+  node(int val_ = 0, int weight_ = 0) {
+    val = val_;
+    weight = weight_;
+  }
+  node operator+(node &obj) const {
+    return node(val + obj.val, weight + obj.weight);
+  }
+  bool operator>(const node &obj) const { return val > obj.val; }
+  bool operator<(const node &obj) const { return val < obj.val; }
   int val;
   int weight;
 };
-int **a;
+
 using namespace std;
-int cal_weight(int j, vector<item> &items) {
-  for (int itm = items.size() - 1; itm >= 0; itm--) {
-    for (int cap = j; cap >= 0; cap--) {
-      if (itm == items.size() - 1) {
-        if (cap >= items[itm].weight) {
-          a[itm][cap] = items[itm].val;
-        } else
-          a[itm][cap] = -1;
-      } else {
-        if (items[itm].weight > cap) {
-          a[itm][cap] = a[itm + 1][cap];
-        } else {
-          a[itm][cap] =
-              max(a[itm + 1][cap],
-                  a[itm + 1][cap - items[itm].weight] + items[itm].val);
-        }
-      }
-      cout << a[itm][cap] << " ";
+list<node> *a;
+void clear_point(list<node> &set) {
+  auto it = set.begin();
+  auto it_ = it;
+  it_++;
+  while (it_ != set.end()) {
+    if (*it > *it_) {
+      it_ = set.erase(it_);
+    } else
+
+    {
+      it++;
+      it_++;
     }
-    cout << endl;
   }
-  return 0;
+}
+void cal_weight(int j, vector<node> &items) {
+  node temp_node(0, 0);
+  a[items.size()].push_back(temp_node);
+  list<node> temp_q;
+  auto it = items.rbegin();
+  temp_q.push_back(temp_node + *it);
+
+  for (int i = items.size() - 1; i >= 0; i--) {
+    temp_q.merge(a[i + 1]);
+    a[i] = temp_q;
+    clear_point(a[i]);
+
+    temp_q.clear();
+    it++;
+    for (const auto &it_ : a[i]) {
+      temp_q.push_back(it_ + *it);
+    };
+  }
 }
 
 int main() {
   int v, n;
-  vector<item> items;
-  item temp_itm;
+  vector<node> items;
+  node temp_itm;
   ifstream fin;
   fin.open("bag.in");
 
@@ -46,15 +69,11 @@ int main() {
     fin >> temp_itm.weight >> temp_itm.val;
     items.push_back(temp_itm);
   }
-  a = new int *[n];
-  for (int i = 0; i < n; i++) {
-    a[i] = new int[v];
-    for (int q = 0; q < v; q++) {
-      a[i][q] = 0;
-    }
-  }
+
+  a = new list<node>[n + 1];
+
   cal_weight(v, items);
-  cout << a[0][v] << endl;
+  cout << a[0].rbegin()->val << endl;
 
   return 0;
 }

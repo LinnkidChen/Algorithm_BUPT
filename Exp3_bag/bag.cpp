@@ -1,20 +1,15 @@
 #include <cstddef>
 #include <fstream>
 #include <iostream>
-#include <list>
 #include <utility>
 #include <vector>
+
 struct item {
   int val;
   int weight;
 };
-struct node {
-  int val;
-  int itm;
-};
-
+int **a;
 using namespace std;
-list<node> *a;
 int cal_weight(int j, vector<item> &items) {
   for (int itm = items.size() - 1; itm >= 0; itm--) {
     for (int cap = j; cap >= 0; cap--) {
@@ -32,6 +27,7 @@ int cal_weight(int j, vector<item> &items) {
                   a[itm + 1][cap - items[itm].weight] + items[itm].val);
         }
       }
+      cout << a[itm][cap] << " ";
     }
     cout << endl;
   }
@@ -50,11 +46,15 @@ int main() {
     fin >> temp_itm.weight >> temp_itm.val;
     items.push_back(temp_itm);
   }
-
-  a = new list<node>[n];
-
+  a = new int *[n];
+  for (int i = 0; i < n; i++) {
+    a[i] = new int[v];
+    for (int q = 0; q < v; q++) {
+      a[i][q] = 0;
+    }
+  }
   cal_weight(v, items);
-  cout << a[0][v].rbegin()->val << endl;
+  cout << a[0][v] << endl;
 
   return 0;
 }
