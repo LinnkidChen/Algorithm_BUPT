@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "cd Exp3_bag  &&g++ -std=c++11 -g bag.cpp -o run"
+            "command": "cd Exp3_bag  && g++ -std=c++11 -g bag_imprv.cpp -o run"
         }
     ]
 }
