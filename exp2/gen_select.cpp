@@ -2,8 +2,8 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
-#define N 200
-#define K 7
+#define N 2000
+#define K 20
 #define Range 200
 int main() {
   ofstream fout;

@@ -2,8 +2,8 @@
 #include <fstream>
 #include <iostream>
 using namespace std;
-#define N 5
-#define Range 20
+#define N 80
+#define Range 2000
 int main() {
   ofstream fout;
   srand(time(NULL));
