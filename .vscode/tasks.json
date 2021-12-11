@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "cd Exp4/Huffman  && g++ -std=c++11 -g  -o run "
+            "command": "cd Exp4/Kruskal && g++ -std=c++11 kruskal.cpp -g  -o run "
         }
     ]
 }
