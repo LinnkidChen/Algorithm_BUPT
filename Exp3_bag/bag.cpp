@@ -11,25 +11,18 @@ struct item {
 int **a;
 using namespace std;
 int cal_weight(int j, vector<item> &items) {
-  for (int itm = items.size() - 1; itm >= 0; itm--) {
+  for (int itm = items.size() - 2; itm >= 0; itm--) {
     for (int cap = j; cap >= 0; cap--) {
-      if (itm == items.size() - 1) {
-        if (cap >= items[itm].weight) {
-          a[itm][cap] = items[itm].val;
-        } else
-          a[itm][cap] = -1;
+
+      if (items[itm].weight > cap) {
+        a[itm][cap] = a[itm + 1][cap];
       } else {
-        if (items[itm].weight > cap) {
-          a[itm][cap] = a[itm + 1][cap];
-        } else {
-          a[itm][cap] =
-              max(a[itm + 1][cap],
-                  a[itm + 1][cap - items[itm].weight] + items[itm].val);
-        }
+        a[itm][cap] = max(a[itm + 1][cap],
+                          a[itm + 1][cap - items[itm].weight] + items[itm].val);
       }
-      cout << a[itm][cap] << " ";
+      // cout << a[itm][cap] << " ";
     }
-    cout << endl;
+    // cout << endl;
   }
   return 0;
 }
